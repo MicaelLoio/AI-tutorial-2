@@ -13,11 +13,14 @@ public class AIControl : MonoBehaviour {
 
         agent = this.GetComponent<NavMeshAgent>();
         goalLocations = GameObject.FindGameObjectsWithTag("goal");
-        int i = Random.Range (0, goalLocations.Length);
+        int i = Random.Range(0, goalLocations.Length);
         agent.SetDestination(goalLocation[i].transform.position);
-        anim = this.GetComponent <Animator>();
+        anim = this.GetComponent<Animator>();
         anim.SetTrigger("isWalking");
-    }
+        anim.SetFloat("wOffset", Random.Range(0.0f, 1.0f));
+        float sm = Random.Range(0.5f, 2);
+        anim.SetFloat("speedMult", sm);
+        agent.speed *= sm;
 
 
     void Update() {
